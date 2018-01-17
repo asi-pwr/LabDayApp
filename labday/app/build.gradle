@@ -118,4 +118,10 @@ dependencies {
     androidTestImplementation "com.github.fabioCollini.daggermock:daggermock:$project.daggerMockVersion"
     testImplementation "com.github.fabioCollini.daggermock:daggermock-kotlin:$project.daggerMockVersion"
     androidTestImplementation "com.github.fabioCollini.daggermock:daggermock-kotlin:$project.daggerMockVersion"
+
+    //Dagger Android
+    testAnnotationProcessor "com.google.dagger:dagger-compiler:$project.daggerVersion"
+    testAnnotationProcessor "com.google.dagger:dagger-android-processor:$project.daggerVersion"
+    testImplementation "com.google.dagger:dagger:$project.daggerVersion"
+    testImplementation "com.google.dagger:dagger-android-support:$project.daggerVersion"
 }
