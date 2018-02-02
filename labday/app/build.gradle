@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.squareup.sqldelight'
 
 project.ext {
     arch = "1.1.0"
@@ -17,6 +18,7 @@ project.ext {
     rxAndroidVersion = "2.0.1"
     concealVersion = "2.0.1"
     sqlBriteVersion = "3.1.0"
+    autoValueVersion = "1.5.3"
 
     junitVersion = "4.12"
     mockitoVersion = "2.13.0"
@@ -121,6 +123,10 @@ dependencies {
 
     //SQLBrite
     implementation "com.squareup.sqlbrite3:sqlbrite:$project.sqlBriteVersion"
+
+    //AutoValue
+    annotationProcessor "com.google.auto.value:auto-value-annotation:$project.autoValueVersion"
+    implementation "com.google.auto.value:auto-value:$project.autoValueVersion"
 
     //testing
     testImplementation "junit:junit:$project.junitVersion"

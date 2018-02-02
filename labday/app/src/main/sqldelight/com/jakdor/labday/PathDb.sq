@@ -1,0 +1,13 @@
+CREATE TABLE path (
+    _id INTEGER NOT NULL,
+    name TEXT,
+    info TEXT,
+    active INTEGER NOT NULL
+);
+
+selectAll:
+SELECT * FROM path;
+
+insertRow:
+INSERT INTO path(_id, name, info, active)
+VALUES (?, ?, ?, ?);

@@ -3,9 +3,12 @@ package com.jakdor.labday.common.dao;
 import android.content.ContentValues;
 import android.database.Cursor;
 
+import com.google.auto.value.AutoValue;
+import com.jakdor.labday.PathDbModel;
 import com.jakdor.labday.common.model.Path;
 import com.squareup.sqlbrite3.BriteDatabase;
 import com.squareup.sqlbrite3.SqlBrite;
+import com.squareup.sqldelight.RowMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,22 +20,9 @@ import static android.database.sqlite.SQLiteDatabase.CONFLICT_FAIL;
 /**
  * DAO for Path model
  */
-public abstract class PathDao {
+@AutoValue
+public abstract class PathDao implements PathDbModel {
 
-    public static final String TABLE = "path";
-
-    public static final String ID = "_id";
-    public static final String NAME = "name";
-    public static final String INFO = "info";
-    public static final String ACTIVE = "active";
-
-    public static final String CREATE_PATH = ""
-            + "CREATE TABLE " + TABLE + "("
-            + ID + " INTEGER NOT NULL,"
-            + NAME + " TEXT,"
-            + INFO + " TEXT,"
-            + ACTIVE + " INTEGER NOT NULL"
-            + ")";
 
     public static long insertPathList(BriteDatabase db, List<Path> paths){
         long pos = -1;
@@ -45,7 +35,7 @@ public abstract class PathDao {
                     .active(path.getActive())
                     .build();
 
-            pos = db.insert(TABLE, CONFLICT_FAIL, values);
+            pos = db.insert(PathDbModel.TABLE_NAME, CONFLICT_FAIL, values);
         }
 
         return pos;
@@ -77,31 +67,7 @@ public abstract class PathDao {
         db.delete(TABLE, null);
     }
 
-    public static final class Builder {
-        private final ContentValues values = new ContentValues();
+    public static final Factory<PathDao> FACTORY = new Factory<PathDao>(AutoValue_PathDao::new);
 
-        public Builder id(long id){
-            values.put(ID, id);
-            return this;
-        }
-
-        public Builder name(String name){
-            values.put(NAME, name);
-            return this;
-        }
-
-        public Builder info(String info){
-            values.put(INFO, info);
-            return this;
-        }
-
-        public Builder active(Integer active){
-            values.put(ACTIVE, active);
-            return this;
-        }
-
-        public ContentValues build(){
-            return values;
-        }
-    }
+    public static final RowMapper<PathDao> SELECT_ALL_MAPPER = FACTORY.selectAllMapper()
 }
