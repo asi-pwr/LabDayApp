@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestOptions
+import com.jaeger.library.StatusBarUtil
 import com.jakdor.labday.R
 import com.jakdor.labday.common.model.Event
 import com.jakdor.labday.common.model.Speaker
@@ -54,6 +55,8 @@ class EventFragment : Fragment(), InjectableFragment {
         binding.eventTitleBar.setNavigationOnClickListener { _ ->
             activity?.onBackPressed()
         }
+
+        StatusBarUtil.setTranslucentForImageView(activity, 64, view)
 
         return binding.root
     }

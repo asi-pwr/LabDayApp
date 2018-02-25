@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context="com.jakdor.labday.view.ui.MainActivity">
 
+    <View
+        android:id="@+id/fake_statusbar_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/statusbar_view_height"
+        android:background="@color/colorPrimary"/>
+
     <FrameLayout
         android:id="@+id/fragmentLayout"
         android:layout_width="match_parent"
